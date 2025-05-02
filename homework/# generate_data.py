@@ -2,6 +2,7 @@
 
 import csv
 import os
+from time import sleep
 
 from faker import Faker
 from tqdm import tqdm  # type: ignore
@@ -32,6 +33,7 @@ def generate_fake_drivers(n):
             "wage-plan": fake.random_element(elements=("miles", "hours")),
         }
         drivers.append(record)
+        sleep(0.1)
 
     return drivers
 
@@ -55,6 +57,7 @@ def generate_fake_timesheet(drivers, n):
             "miles-logged": fake.random_int(min=0, max=40) * 100,
         }
         timesheet.append(record)
+        sleep(0.1)
 
     return timesheet
 
@@ -81,6 +84,7 @@ if __name__ == "__main__":
         os.makedirs("files")
     save_fake_data(fake_drivers, "files/drivers.csv")
     save_fake_data(fake_timesheet, "files/timesheet.csv")
+    
 
     print("Data saved to files/")
     
